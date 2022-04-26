@@ -1,0 +1,3 @@
+[submodule "TraceRecorderSource"]
+	path = TraceRecorderSource
+	url = https://github.com/percepio/TraceRecorderSource.git
