@@ -8,9 +8,7 @@ etags:
 
 gdb:
 	cp gdbinit ./build/.gdbinit
-#	openocd -f board/st_nucleo_l4.cfg -c "stm32l4x.cpu configure -rtos FreeRTOS"
-	openocd -f board/st_nucleo_l4.cfg -c "stm32l4x.cpu configure -rtos auto"
-#	openocd -f board/st_nucleo_l4.cfg 
+	openocd -f board/st_nucleo_l4.cfg 
 reset:
 	st-flash reset
 

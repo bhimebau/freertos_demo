@@ -51,35 +51,47 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 
 /* USER CODE BEGIN PV */
-osThreadId_t t1;
+osThreadId_t t1_id;
 const osThreadAttr_t t1_attributes = {
-  .name = "Thread 1",
+  .name = "t1",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal+1,
 };
 
 void t1_code(void *argument) {
   int i = 1;
   while (1) {
     i = i + 1;
+    osDelay(500);
   }
+  osThreadTerminate(osThreadGetId());
 }
 
-osThreadId_t t2;
+osThreadId_t t2_id;
 const osThreadAttr_t t2_attributes = {
-  .name = "Thread 2",
+  .name = "t2",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal+2,
 };
 
 void t2_code(void *argument) {
   int i = 100;
   while (1) {
     i = i + 10;
+    osDelay(500);
   }
+  osThreadTerminate(osThreadGetId());
 }
 
-static volatile int uxTopUsedPriority;
+#ifdef __GNUC__
+#define USED __attribute__((used))
+#else
+#define USED
+#endif
+ 
+const int USED uxTopUsedPriority = configMAX_PRIORITIES - 1;
+
+/* static volatile int uxTopUsedPriority; */
 
 /* USER CODE END PV */
 
@@ -105,7 +117,7 @@ void StartDefaultTask(void *argument);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uxTopUsedPriority = configMAX_PRIORITIES - 1;
+  /* uxTopUsedPriority = configMAX_PRIORITIES - 1; */
     
   /* USER CODE END 1 */
 
@@ -157,8 +169,8 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-  t1 = osThreadNew(t1_code, NULL, &t1_attributes);
-  t2 = osThreadNew(t2_code, NULL, &t2_attributes);
+  t1_id = osThreadNew(t1_code, NULL, &t1_attributes);
+  t2_id = osThreadNew(t2_code, NULL, &t2_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */

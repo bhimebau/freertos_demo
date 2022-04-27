@@ -1,5 +1,6 @@
 #MicroXplorer Configuration settings - do not modify
-FREERTOS.IPParameters=Tasks01,configUSE_NEWLIB_REENTRANT
+FREERTOS.HEAP_NUMBER=4
+FREERTOS.IPParameters=Tasks01,configUSE_NEWLIB_REENTRANT,HEAP_NUMBER
 FREERTOS.Tasks01=defaultTask,24,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL
 FREERTOS.configUSE_NEWLIB_REENTRANT=1
 File.Version=6
