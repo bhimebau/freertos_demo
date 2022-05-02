@@ -70,10 +70,10 @@ Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
 Middlewares/Third_Party/FreeRTOS/Source/timers.c \
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
-
-# Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
-
+Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
+Core/Src/trcKernelPort.c \
+Core/Src/trcSnapshotRecorder.c \
+Core/Src/trcStreamingRecorder.c 
 
 # ASM sources
 ASM_SOURCES =  \
@@ -138,8 +138,9 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 -IDrivers/CMSIS/Device/ST/STM32L4xx/Include \
--IDrivers/CMSIS/Include
-
+-IDrivers/CMSIS/Include \
+-ITrace/include \
+-ITrace/config 
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
